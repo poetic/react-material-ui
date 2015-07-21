@@ -1,6 +1,6 @@
 Package.describe({
   name: 'poetic:react-material-ui',
-  version: '0.0.1',
+  version: '0.0.2',
   // Brief, one-line summary of the package.
   summary: 'Everything you need to use material ui inside your Meteor application.',
   // URL to the Git repository containing the source code for this package.
