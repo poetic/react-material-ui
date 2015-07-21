@@ -10,9 +10,24 @@ Package.describe({
   documentation: 'README.md'
 });
 
+Npm.depends({
+  'externalify': '0.1.0',
+  'material-ui': '0.10.1',
+  'react-tap-event-plugin': '0.1.7'
+});
+
 Package.onUse(function(api) {
-  api.versionsFrom('1.1.0.2');
-  api.addFiles('react-material-ui.js');
+  api.use([
+    'react',
+    'cosmos:browserify'
+  ], 'client');
+
+  api.addFiles([
+    'react-material-ui.browserify.options.json',
+    'react-material-ui.browserify.js'
+  ], 'client');
+
+  api.export(['mui', 'injectTapEventPlugin'], 'client');
 });
 
 Package.onTest(function(api) {
