@@ -8,5 +8,5 @@ meteor-platform
 autopublish
 insecure
 react
-poetic:react-material-ui
 react-template-helper
+poetic:react-material-ui

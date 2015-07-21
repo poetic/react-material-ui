@@ -13,5 +13,3 @@ Everything you need to use [material ui](http://material-ui.com/) inside your Me
 ## Example
 
 [Example app](example) with material ui based on the default meteor application template.
-
-[http://react-material-ui.meteor.com](http://react-material-ui.meteor.com)
