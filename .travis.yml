@@ -1,7 +1,8 @@
+sudo: required
 language: node_js
 node_js:
   - stable
 before_install:
-  - sudo curl https://install.meteor.com | sh
+  - curl https://install.meteor.com | sh
 script:
   - VELOCITY_TEST_PACKAGES=1 meteor test-packages --driver-package velocity:html-reporter --velocity ./
