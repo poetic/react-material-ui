@@ -12,8 +12,7 @@ Package.describe({
 
 Npm.depends({
   'externalify': '0.1.0',
-  'material-ui': '0.12.3',
-  'react-tap-event-plugin': '0.1.8'
+  'material-ui': '0.12.3'
 });
 
 Package.onUse(function(api) {
@@ -32,5 +31,18 @@ Package.onUse(function(api) {
 
 Package.onTest(function(api) {
   api.use('sanjo:jasmine@0.18.0');
-  api.addFiles('tests/client/react-material-ui-spec.js', 'client');
+  api.use([
+    'jquery@1.11.4',
+    'poetic:react-material-ui',
+    'react@0.1.13',
+    'session@1.1.1',
+    'static-html@1.0.2',
+  ], 'client');
+
+  api.addFiles([
+    'example/client/example.html',
+    'example/client/example.jsx',
+    'tests/client/react-material-ui-spec.js',
+  ], 'client');
+
 });

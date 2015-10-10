@@ -1,17 +1,18 @@
-var ThemeManager = new mui.Styles.ThemeManager();
-injectTapEventPlugin();
-
 var { Card, CardTitle, CardActions, FlatButton, CardText } = mui;
 
 var App = React.createClass({
-  childContextTypes: {
-    muiTheme: React.PropTypes.object
+  // This mixin makes the getMeteorData method work
+  mixins: [ReactMeteorData],
+
+  // Loads items from the Tasks collection and puts them on this.data.tasks
+  getMeteorData() {
+    return {
+      count: Session.get('count')
+    }
   },
 
-  getChildContext: function() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    };
+  increaseCount() {
+    Session.set('count', Session.get('count') + 1)
   },
 
   render: function() {
@@ -19,31 +20,19 @@ var App = React.createClass({
       <Card>
         <CardTitle title="Welcome to Meteor!"/>
         <CardActions>
-          <FlatButton label="Click Me"/>
+          <FlatButton label="Click Me" onClick={this.increaseCount}/>
         </CardActions>
         <CardText>
-          You've pressed the button {this.props.counter} times.
+          You've pressed the button {this.data.count} times.
         </CardText>
       </Card>
     );
   }
 });
 
-// counter starts at 0
-Session.setDefault('counter', 0);
+Meteor.startup(function () {
+  Session.setDefault('count', 0);
 
-Template.app.helpers({
-  App: function() {
-    return App;
-  },
-  counter: function () {
-    return Session.get('counter');
-  }
-});
-
-Template.app.events({
-  'click button': function () {
-    // increment the counter when button is clicked
-    Session.set('counter', Session.get('counter') + 1);
-  }
+  // Use Meteor.startup to render the component after the page is ready
+  React.render(<App />, document.getElementById("render-target"));
 });
