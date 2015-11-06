@@ -7,13 +7,13 @@ var App = React.createClass({
   getInitialState() {
     let ThemeManager = mui.Styles.ThemeManager
 
-    let DefaultRawTheme = ThemeManager().getCurrentTheme()
+    let DefaultRawTheme = mui.Styles.LightRawTheme
 
     return {
       hovered: false,
       isKeyboardFocused: false,
       touch: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : DefaultRawTheme,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
   // Loads items from the Tasks collection and puts them on this.data.tasks
@@ -61,5 +61,5 @@ Meteor.startup(function () {
   Session.setDefault('count', 0);
 
   // Use Meteor.startup to render the component after the page is ready
-  React.render(<App />, document.getElementById("render-target"));
+  ReactDOM.render(<App />, document.getElementById("render-target"));
 });
