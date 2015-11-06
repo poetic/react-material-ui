@@ -4,11 +4,38 @@ var App = React.createClass({
   // This mixin makes the getMeteorData method work
   mixins: [ReactMeteorData],
 
+  getInitialState() {
+    let ThemeManager = mui.Styles.ThemeManager
+
+    let DefaultRawTheme = ThemeManager().getCurrentTheme()
+
+    return {
+      hovered: false,
+      isKeyboardFocused: false,
+      touch: false,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : DefaultRawTheme,
+    };
+  },
   // Loads items from the Tasks collection and puts them on this.data.tasks
   getMeteorData() {
     return {
       count: Session.get('count')
     }
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext () {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   increaseCount() {
