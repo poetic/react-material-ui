@@ -12,12 +12,12 @@ Package.describe({
 
 Npm.depends({
   'externalify': '0.1.0',
-  'material-ui': '0.12.3'
+  'material-ui': '0.13.1'
 });
 
 Package.onUse(function(api) {
   api.use([
-    'react@0.1.13',
+    'react@0.14.1_1',
     'cosmos:browserify@0.8.1'
   ], 'client');
 
